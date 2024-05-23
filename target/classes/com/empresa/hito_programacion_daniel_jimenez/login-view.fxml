@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito_programacion_daniel_jimenez.LoginController">
+    <Label text="Usuario" />
+    <TextField fx:id="usernameField" promptText="Ingrese su usuario" />
+    <Label text="Contraseña" />
+    <PasswordField fx:id="passwordField" promptText="Ingrese su contraseña" />
+    <Button text="Iniciar sesión" onAction="#onLoginButtonClick" />
+    <Label fx:id="errorLabel" textFill="red" />
+</VBox>
