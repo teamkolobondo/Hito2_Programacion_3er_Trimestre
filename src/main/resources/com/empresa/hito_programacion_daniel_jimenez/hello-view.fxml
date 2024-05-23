@@ -4,13 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="469.0" prefWidth="523.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.empresa.hito_programacion_daniel_jimenez.HelloController">
+<VBox alignment="CENTER" prefHeight="469.0" prefWidth="523.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.empresa.hito_programacion_daniel_jimenez.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Pane prefHeight="200.0" prefWidth="200.0" />
+    <TextField fx:id="searchField" promptText="Buscar por nombre" onKeyReleased="#onSearchFieldKeyReleased" />
+    <Pane id="Informacion sobre clientes " prefHeight="200.0" prefWidth="200.0" />
     <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Ver registros" />
     <TableView fx:id="tableView">
         <columns>
             <TableColumn fx:id="col1" text="Nombre" />
@@ -19,5 +19,6 @@
             <TableColumn fx:id="col4" text="Pagado" />
         </columns>
     </TableView>
+    <Button onAction="#onHelloButtonClick" text="Ver registros" />
     <Button onAction="#onAddButtonClick" text="Añadir registro" />
 </VBox>

@@ -12,6 +12,7 @@ import org.bson.Document;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class HelloController {
     @FXML
@@ -32,15 +33,19 @@ public class HelloController {
     @FXML
     private TableColumn<Registro, Boolean> col4;
 
+    @FXML
+    private TextField searchField;
+
     private final MongoDBHandler mongoDBHandler = new MongoDBHandler();
     private final Pattern emailPattern = Pattern.compile("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$");
+    private List<Registro> allRegistros; // Variable para almacenar todos los registros
 
     @FXML
     protected void onHelloButtonClick() {
         System.out.println("Cargando registros...");
         tableView.getItems().clear();
         List<Document> registros = mongoDBHandler.getRegistros();
-        for (Document doc : registros) {
+        allRegistros = registros.stream().map(doc -> {
             String nombre = doc.getString("nombre");
             String correo = doc.getString("correo");
             String factura = doc.getString("factura");
@@ -52,10 +57,20 @@ public class HelloController {
             if (factura == null) factura = "";
             if (pagado == null) pagado = false;
 
-            Registro registro = new Registro(nombre, correo, factura, pagado);
-            tableView.getItems().add(registro);
-            System.out.println("Registro añadido a la tabla: " + registro.getNombre());
-        }
+            return new Registro(nombre, correo, factura, pagado);
+        }).collect(Collectors.toList());
+
+        tableView.getItems().addAll(allRegistros);
+    }
+
+    @FXML
+    protected void onSearchFieldKeyReleased() {
+        String filter = searchField.getText().toLowerCase();
+        tableView.getItems().clear();
+        List<Registro> filteredRegistros = allRegistros.stream()
+                .filter(registro -> registro.getNombre().toLowerCase().contains(filter))
+                .collect(Collectors.toList());
+        tableView.getItems().addAll(filteredRegistros);
     }
 
     @FXML
