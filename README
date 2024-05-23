@@ -2,3 +2,4 @@ Este proyecto ha sido realizado con MongoDB
 Hay que runear la aplicación desde el HelloAplication para que no haya ningun fallo
 Implementa tanto visionado de registros como creación, edición y elimiación
 Al iniciar sesión hay que poner los siguientes datos: USUARIO: Daniel  CONTRASEÑA: 123
+Este proyecto Requiere una libreria de mongoDb para poder conectarse a la base de datos
